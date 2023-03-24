@@ -11,23 +11,23 @@
     <div>
       <form action="" method="post" th:object="${updateForm}">
         <div>
-          <label for="productId" >상품번호</label>
+          <label for="" >상품번호</label>
           <input type="text" name="productId" readonly th:field="*{pid}">
         </div>
         <div>
-          <label for="pname">상품명</label>
+          <label for="">상품명</label>
           <input type="text" name="pname" th:field="*{pname}">
           <span class="field-error"></span>
           <span class="field-error" th:errors="*{pname}"></span>
         </div>
         <div>
-          <label for="quantity">수량</label>
+          <label for="">수량</label>
           <input type="text" name="quantity" th:field="*{quantity}">
           <span class="field-error"></span>
           <span class="field-error" th:errors="*{quantity}"></span>
         </div>
         <div>
-          <label for="price">가격</label>
+          <label for="">가격</label>
           <input type="text" name="price" th:field="*{price}">
           <span class="field-error"></span>
           <span class="field-error" th:errors="*{price}"></span>
@@ -43,16 +43,13 @@
     <script>
       const $btnCancel = document.getElementById('btnCancel');
       const $btnFindAll = document.getElementById('btnFindAll');
+      
+      const btnCancel_h = e => history.back()
+      const btnFindAll_h = e => location.href = '/products';
 
-      const btnCancel_h = e => {
-        globalThis.location.back(); // 뒤로가기
-      };
-      const btnFindAll_h = e => {
-        globalThis.location.href = `/products`;
-      };
+      $btnCancel.addEventListener('click',btnCancel_h,false);
+      $btnFindAll.addEventListener('click',btnFindAll_h,false);
 
-      $btnUpdate.addEventListener('click', btnCancel_h, false);
-      $btnDelete.addEventListener('click', btnFindAll_h, false);
     </script>
   </body>
 </html>
