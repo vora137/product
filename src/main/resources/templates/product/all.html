@@ -20,17 +20,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="product : ${products}">
-              <td th:text="${product.pid}">ID</td>
-              <td th:text="${product.pname}">상품명</td>
-              <td th:text="${product.quantity}">수량</td>
-              <td th:text="${product.price}">가격</td>
-            </tr>
+          <tr th:each="product : ${products}">
+            <td th:text="${product.pid}">ID</td>
+            <td>
+              <a href="" th:href="@{/products/{id}/detail(id=${product.pid})}" th:text="${product.pname}"></a>
+            </td>
+            <td th:text="${product.quantity}">수량</td>
+            <td th:text="${product.price}">가격</td>
+          </tr>
           </tbody>
         </table>
       </div>
       <div>
-        <button id="btnAdd">등록</button>
+        <button id="btnAdd" th:text="#{button.add}">등록</button>
       </div>
     </div>
     <script>
