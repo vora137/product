@@ -1,13 +1,12 @@
-package com.kh.myproduct.myproduct;
+package com.kh.myproduct.dao;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MyproductApplicationTests {
+public class ProductDAOImplTest {
+  @Test
+  void save(){
 
-	@Test
-	void contextLoads() {
-	}
-
+  }
 }
