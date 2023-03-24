@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -102,6 +103,19 @@ public class ProductDAOImpl implements ProductDAO {
     return template.update(sql,Map.of("id",pid));
   }
 
+  /**
+   * 전체 삭제
+   * @return
+   */
+  @Override
+  public int deleteAll(){
+    String sql = "delete from product";
+    Map<String,String> param = new LinkedHashMap<>();
+    int deletedRowCnt = template.update(sql,param);
+
+    return deletedRowCnt;
+  }
+
   /** 목록
    * @return
    */
@@ -140,6 +154,35 @@ public class ProductDAOImpl implements ProductDAO {
         return product;
       };
     }
-    // 자동매핑
 
+  /**
+   * 상품존재 유무
+   *
+   * @param pid 상품아이디
+   * @return
+   */
+  @Override
+  public boolean isExist(Long pid) {
+    boolean isExist = false;
+    String sql = "select count(*) from product where pid = :pid";
+
+    Map<String,Long> param = Map.of("pid",pid);
+    Integer integer = template.queryForObject(sql,param,Integer.class);
+    isExist = (integer > 0) ? true : false;
+
+    return isExist;
+  }
+
+  /**
+   * 등록된 상품 수
+   *
+   * @return
+   */
+  @Override
+  public int countOfRecord() {
+    String sql = "select count (*) from product";
+    Map<String,String> param = new LinkedHashMap<>();
+    Integer rows = template.queryForObject(sql, param, Integer.class);
+    return rows;
+  }
 }

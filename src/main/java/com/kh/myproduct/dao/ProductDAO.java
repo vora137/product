@@ -36,8 +36,27 @@ public interface ProductDAO {
   int delete(Long pid);
 
   /**
+   * 전체 삭제
+   * @return
+   */
+  int deleteAll();
+
+  /**
+   * 상품존재 유무
+   * @param pid 상품아이디
+   * @return
+   */
+  boolean isExist(Long pid);
+
+  /**
    * 목록
    * @return
    */
   List<Product> findAll();
+
+  /**
+   * 등록된 상품 수
+   * @return
+   */
+  int countOfRecord();
 }

@@ -30,11 +30,22 @@ public class ProductSVCImpl implements ProductSVC {
 
   @Override
   public int delete(Long pid) {
-    return 0;
+    return productDAO.delete(pid);
   }
 
   @Override
   public List<Product> findAll() {
-    return null;
+    return productDAO.findAll();
+  }
+
+  /**
+   * 상품 존재 유무
+   *
+   * @param pid
+   * @return
+   */
+  @Override
+  public boolean isExist(Long pid) {
+    return false;
   }
 }

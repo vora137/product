@@ -20,4 +20,11 @@ public interface ProductSVC {
 
   // 목록 List:인터페이스
   List<Product> findAll();
+
+  /**
+   * 상품 존재 유무
+   * @param pid
+   * @return
+   */
+  boolean isExist(Long pid);
 }
