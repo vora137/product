@@ -52,8 +52,8 @@ public class ProductController {
       bindingResult.rejectValue("quantity", "product");
     }
    // 총액(상품수량*가격) 10_000_000 초과 금지
-    if (saveForm.getQuantity() * saveForm.getPrice() > 10_000_000L ){
-      bindingResult.reject("totalprice",new String[]{"1000"},"");
+    if (saveForm.getQuantity() * saveForm.getPrice() >= 100_000_000L ){
+      bindingResult.reject("totalprice",new String[]{"1"},"");
     }
     if (saveForm.getQuantity() > 1 && saveForm.getQuantity() <10){
       bindingResult.reject("quantity",new String[]{"1","2"},"");
