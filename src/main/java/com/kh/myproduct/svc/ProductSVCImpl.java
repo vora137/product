@@ -46,6 +46,6 @@ public class ProductSVCImpl implements ProductSVC {
    */
   @Override
   public boolean isExist(Long pid) {
-    return false;
+    return productDAO.isExist(pid);
   }
 }

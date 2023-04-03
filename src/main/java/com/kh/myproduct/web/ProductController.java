@@ -2,6 +2,7 @@ package com.kh.myproduct.web;
 
 import com.kh.myproduct.dao.Product;
 import com.kh.myproduct.svc.ProductSVC;
+import com.kh.myproduct.web.exception.BizException;
 import com.kh.myproduct.web.form.DetailForm;
 import com.kh.myproduct.web.form.SaveForm;
 import com.kh.myproduct.web.form.UpdateForm;
@@ -51,7 +52,7 @@ public class ProductController {
     if(saveForm.getQuantity() == 100 ){
       bindingResult.rejectValue("quantity", "product");
     }
-   // 총액(상품수량*가격) 10_000_000 초과 금지
+   // 총액(상품수량*가격) 100_000_000 초과 금지
     if (saveForm.getQuantity() * saveForm.getPrice() >= 100_000_000L ){
       bindingResult.reject("totalprice",new String[]{"1"},"");
     }
@@ -150,6 +151,10 @@ public class ProductController {
   public String findAll(Model model){
     List<Product> products = productSVC.findAll();
     model.addAttribute("products", products);
+
+    if(products.size() ==0){
+      throw new BizException("등록된 상품정보가 없습니다");
+    }
     return "product/all";
   }
 }
