@@ -5,6 +5,7 @@ import com.kh.myproduct.svc.ProductSVC;
 import com.kh.myproduct.web.exception.RestBizException;
 import com.kh.myproduct.web.rest.SaveRest;
 import com.kh.myproduct.web.rest.UpdateRest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -22,11 +23,22 @@ public class RestProductController {
 
   //상품등록
   @PostMapping
-  public RestResponse<Object> save(@RequestBody SaveRest saveRest){
+  public RestResponse<Object> save(
+      @Valid @RequestBody SaveRest saveRest
+//      BindingResult bindingResult,
+//      RedirectAttributes redirectAttributes
+  ){
     RestResponse<Object> res = null;
     log.info("saveRest={}",saveRest);
 
-    //검증
+//    //검증
+//    if (bindingResult.hasErrors()){
+//      log.info("bindingResult={}",bindingResult);
+//      return "product";
+//    }
+//    if(saveRest.getPrice() * saveRest.getQuantity()>= 100_000_000L){
+//      bindingResult.reject("totalprice",new String[]{"1"},"");
+//    }
 
     //등록
     Product product = new Product();

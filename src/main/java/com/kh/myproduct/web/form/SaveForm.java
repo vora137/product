@@ -1,14 +1,12 @@
 package com.kh.myproduct.web.form;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
 public class SaveForm {
   @NotBlank // null 허용안함, 문자열타입에만 사용
+  @Size(min = 2)
   private String pname;
 
   @NotNull  // null 허용안함
